@@ -1,0 +1,146 @@
+nav{
+    background-color: #d43f28b0 !important;
+    min-height: 10vh !important;
+}
+.logo{
+    width: 5rem;
+    object-fit: cover;
+}
+.lupa{
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+#aqui-estoy{
+    
+    border-radius: 1rem;
+    background-color: #781e10a3;    ;
+}
+
+main{
+    min-height: 80vh !important;
+    background-color: #e5d0c7 !important;
+}
+section > h2{
+    text-align: center;
+    background-color: rgba(122, 49, 89, 0.192);
+    color: rgb(90, 90, 90);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.card{
+    display: flex !important;
+    align-self: center;
+    height: 23rem !important;
+}
+.card-bottom{
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    align-items: end !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.card img {
+    height: 10rem;
+    object-fit: cover;
+}
+footer{
+    min-height: 10vh;
+    background-color: #d43f28b0 !important;
+    display: flex;
+    justify-content: space-between;
+}
+footer img{
+    width: 10rem;
+    height: 4rem;
+    object-fit: cover;
+}
+footer h3{
+    padding-top: .5rem;
+    padding-right: 2rem;
+}
+.detail-div{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 50vh !important;
+}
+figure{
+    display: flex;
+    padding-top: 1rem;
+    border: 2px solid grey;
+}
+figure img{
+    padding-left: 2rem;
+    width: 20rem;
+    height: 15rem;
+    object-fit: cover;
+}
+figure figcaption{
+    padding: 0 2rem;
+    
+}
+.contact-form fieldset{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    width: 20rem;
+    padding: 3rem;
+}
+.contact-form{
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+.table-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2em;
+    padding-top: 2em ;
+
+}
+table{
+    width: 80% !important;
+
+}
+caption{
+    caption-side: top;
+}
+table,th,td,tr,caption{
+    border: 1px solid black !important;
+    border-collapse: collapse;
+    background-color: rgba(246, 246, 246, 0.761);
+}
+@media only screen and (min-width: 768px){
+    .contact-form fieldset{
+        width: 40rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .detail-div{
+        width: 100%;
+        min-height: 80vh;
+        padding: 0;
+        margin: 0;
+    }
+    figure{
+        display: flex;
+        flex-direction: column;
+        border: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    figure img {
+        width: 20rem;
+        height: 20rem;
+        object-fit: contain;
+        padding: 1rem;
+    }
+    table{
+        margin-left: 1rem;
+    }
+}
