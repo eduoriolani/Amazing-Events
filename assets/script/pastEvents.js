@@ -14,21 +14,21 @@ let cards = document.getElementById("card-section")
     </div>`
     }
 
-    // function filter(arrayEventos, fecha) {
-    //     const eventosFiltro = [];
-    //     for (let objetoEvento of arrayEventos) {
-    //         if (objetoEvento.date <= fecha) {
-    //             eventosFiltro.push(objetoEvento);
-    //         }
-    //     }
-    //     return eventosFiltro;
-    // }
+    function filter(arrayEventos, fecha) {
+        const eventosFiltro = [];
+        for (let objetoEvento of arrayEventos) {
+            if (objetoEvento.date < fecha) {
+                eventosFiltro.push(objetoEvento);
+            }
+        }
+        return eventosFiltro;
+    }
     
     
-    // filter(data.events, data.currentDate);
-    // let eventosFiltro = filter(data.events, data.currentDate);
+    filter(data.events, data.currentDate);
+    let eventosFiltro = filter(data.events, data.currentDate);
 
-    const pastEvents = data.events.filter ( events => events.date < data.currentDate)
+    // const pastEvents = data.events.filter ( events => events.date < data.currentDate)
 
     function cardLoop(events, cardList) {
         let template = "";
@@ -38,4 +38,4 @@ let cards = document.getElementById("card-section")
         cardList.innerHTML += template;
     }
 
-cardLoop(pastEvents ,cards)
+cardLoop(eventosFiltro ,cards)

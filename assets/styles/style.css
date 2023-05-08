@@ -17,7 +17,7 @@ nav{
     background-color: #781e10a3;    ;
 }
 .main-head{
-    min-height: 100vh;
+    min-height: 80vh;
     background-image: url(https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
     object-fit: cover !important;
     display: flex !important;
@@ -103,6 +103,13 @@ figure figcaption{
     width: 100% !important;
     display: flex;
     justify-content: center;
+}
+.contact-form fieldset{
+    width: 70%;
+}
+#send-button{
+    width: 20%;
+    justify-content: center !important;
 }
 .table-div{
     width: 100%;
