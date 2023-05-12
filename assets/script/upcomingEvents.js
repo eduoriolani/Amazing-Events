@@ -1,43 +1,81 @@
-let cards = document.getElementById("card-section")
+const cards = document.getElementById("card-section")
+const form = document.getElementById("form-home")
+const allCheckbox = document.getElementById("checkbox-home")
+const search = document.getElementById("search")
+const allEvents = data.events
+const futureEvents = allEvents.filter (events => events.date > data.currentDate)
 
-    function armarCards(objeto) {
-        return `<div class="card m-2 align-items-center" style="width: 18rem;">
-        <img src=${objeto.image} class="card-img-top" alt="books">
-        <div class="card-body">
-        <h5 class="card-title">${objeto.name}</h5>
-        <p class="card-text">${objeto.description}</p>
-        <div class="card-bottom">
-            <h6>${objeto.price}</h6>
-            <a href="./pages/details.html" class="btn btn-primary text-bg-dark button-pos">Show More</a>
-        </div>
-        </div>
-    </div>`
+function cardTemplate( events ){
+    return events.reduce((acc, event) =>{
+        return acc += `<div class="card m-2 align-items-center" style="width: 18rem;">
+    <img src=${event.image} class="card-img-top" alt="books">
+    <div class="card-body">
+    <h5 class="card-title">${event.name}</h5>
+    <p class="card-text">${event.description}</p>
+    <div class="card-bottom d-flex flex-row w-100 justify-content-between align-content-end">
+        <h6>$${event.price}</h6>
+        <a href="../pages/details.html?name=${event.name}&id=${event._id}" class="btn btn-primary text-bg-dark button-pos">Show More</a>
+    </div>
+    </div>
+</div>`
+    }, "");
+}
+cards.innerHTML = cardTemplate(futureEvents)
+
+
+const arrayEvents = allEvents.map( events => events.category)
+const categories = [...new Set(arrayEvents)]
+
+
+function checkBuild(category){
+    return `<input type="checkbox" name="${category}" id="${category}" value="${category}">
+    <label for="${category}" class="p-3">${category}</label>`
+}
+
+function checkLoop(events, checkList) {
+    let template = "";
+    for (let infoCheck of events) {
+        template += checkBuild(infoCheck)
+    }
+    checkList.innerHTML = template;
+}
+    checkLoop(categories, allCheckbox)
+
+
+
+    search.addEventListener("input", ()=>{
+        const checkedCheckbox = Array.from( document.querySelectorAll('input[type="checkbox"]:checked')).map( check => check.value)
+        const filteredEvents = filtroEventos(futureEvents, checkedCheckbox)
+        cards.innerHTML = "";
+        let aux = filtroBusqueda(filteredEvents, search.value)
+        resultadoFiltro(aux, cards)
+    })
+
+    allCheckbox.addEventListener ("change", (e)=>{
+        const checkedCheckbox = Array.from( document.querySelectorAll('input[type="checkbox"]:checked')).map( check => check.value)
+        const filteredEvents = filtroEventos(futureEvents, checkedCheckbox)
+        cards.innerHTML = "";
+        let aux = filtroBusqueda(filteredEvents, search.value)
+        resultadoFiltro(aux, cards)
+    })
+
+
+    function filtroBusqueda ( events, busqueda){
+        return events.filter( event => event.name.toLowerCase().includes(busqueda.toLowerCase()))
+    }
+    
+
+    function filtroEventos (arrayEvents, category){
+        if(category.length == 0)return arrayEvents
+        return arrayEvents.filter( events => category.includes(events.category))
     }
 
-    function filter(arrayEventosDate, date) {
-        const eventosFiltro = [];
-        for (let objetoEvento of arrayEventosDate) {
-         if (objetoEvento.date > date) {
-                eventosFiltro.push(objetoEvento);
-            }
-        }
-        return eventosFiltro;
+    function resultadoFiltro(arrayFiltrado, imprimir) {
+        if (arrayFiltrado.length === 0) {
+            imprimir.innerHTML = `<h3>No results found</h3>`
+            } else {
+            imprimir.innerHTML = cardTemplate (arrayFiltrado, imprimir)
+            } 
     }
     
     
-    filter(data.events, data.currentDate);
-    let eventosFiltro = filter(data.events, data.currentDate);
-    // const futureEvents = data.events.filter (events => events.date > data.currentDate)
-
-    
-
-    
-    function cardLoop(events, cardList) {
-        let template = "";
-        for (let infoCard of events) {
-            template += armarCards(infoCard)
-        }
-        cardList.innerHTML += template;
-    }
-
-cardLoop(eventosFiltro,cards)
