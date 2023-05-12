@@ -22,9 +22,10 @@ function cardTemplate( events ){
 }
 cards.innerHTML = cardTemplate(allEvents)
 
-// Reduciendo a 7 categorias
+// Reduciendo a 7 categorias para los checkbox
 const arrayEvents = allEvents.map( events => events.category)
 const categories = [...new Set(arrayEvents)]
+
 
 
 function checkBuild(category){
@@ -41,7 +42,7 @@ function checkLoop(events, checkList) {
 }
     checkLoop(categories, allCheckbox)
 
-
+    // Eventos y sus respectivas funciones de filtro 
 
     search.addEventListener("input", ()=>{
         const checkedCheckbox = Array.from( document.querySelectorAll('input[type="checkbox"]:checked')).map( check => check.value)
@@ -83,7 +84,7 @@ function checkLoop(events, checkList) {
 
 
    
-// console.log(checkLoop(categories, allCheckbox))
+
 
  
     
