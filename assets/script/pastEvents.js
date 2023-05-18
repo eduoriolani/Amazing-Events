@@ -2,8 +2,14 @@ const cards = document.getElementById("card-section")
 const form = document.getElementById("form-home")
 const allCheckbox = document.getElementById("checkbox-home")
 const search = document.getElementById("search")
-const allEvents = data.events
-const pastEvents = allEvents.filter (events => events.date < data.currentDate)
+let events
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then( response => response.json())
+    .then( data => {
+        events = data
+        let allEvents = events.events
+        const pastEvents = allEvents.filter(events => events.date < data.currentDate)
 
 
 function cardTemplate( events ){
@@ -80,7 +86,8 @@ function checkLoop(events, checkList) {
             } 
     }
 
-
+    })
+        .catch(error => console.log(error))
 
    
 
