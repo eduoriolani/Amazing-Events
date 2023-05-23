@@ -10,7 +10,7 @@
     <title>Amazing events</title>
 </head>
 <body>
-    <div class="layout">
+    <div class="layout" id="app">
         <header>
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid d-flex flex-row justify-arounds">
@@ -47,22 +47,58 @@
                 <h2>Stats</h2>
             </section>
             <div class="table-div width-100" id="div-allEvents">
-                
-                <!-- <table id="table-upcoming">
-
-                </table>
-                <table id="table-past">
-                        <caption>Past events statistic by category</caption>
+                <table id="table-allEvents">
+                    <caption class="text-center bg-dark text-white">Event statistics</caption>
                     <thead>
                         <tr>
-                            <th>Categories</th>
-                            <th>Revenues</th>
-                            <th>Percentage of attendance</th>
+                            <th class="p-2">Events with the highest percentage of attendance</th>
+                            <th class="p-2">Events with the lowest percentage of attendance</th>
+                            <th class="p-2">Event with larger capacity</th>
                         </tr>
                     </thead>
-                    
+                    <tbody>
+                        <tr>
+                            <td class="p-2">{{highestAssistance}}</td>
+                            <td class="p-2">{{lowestAssistance}}</td>
+                            <td class="p-2">{{capacity}}</td>
+                        </tr>
+                    </tbody>
                 </table>
-                     -->
+                <table>
+                    <caption class="text-center bg-dark text-white">Upcoming events statistics by category</caption>
+                    <thead>
+                        <tr>
+                            <th class="p-2">Categories</th>
+                            <th class="p-2">Revenues</th>
+                            <th class="p-2">Percentage of attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="category of categoriesUpcoming">
+                            <td class="p-2">{{ category }}</td>
+                            <td class="p-2">$ {{ estadisticaUpcoming[category].revenues }}</td>
+                            <td class="p-2">{{ estadisticaUpcoming[category].attendance }}%</td>
+                          </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <caption class="text-center bg-dark text-white">Past events statistic by category</caption>
+                    <thead>
+                        <tr>
+                            <th class="p-2">Categories</th>
+                            <th class="p-2">Revenues</th>
+                            <th class="p-2">Percentage of attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="category of categoriesPast">
+                            <td class="p-2">{{ category }}</td>
+                            <td class="p-2">$ {{ estadisticaPast[category].revenues }}</td>
+                            <td class="p-2">{{ estadisticaPast[category].attendance }}%</td>
+                          </tr>
+                    </tbody>
+                    </tbody>
+                </table>
                 
             </div>
         </main>
@@ -72,6 +108,7 @@
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../assets/script/stats.js"></script>
 </body>
 </html>

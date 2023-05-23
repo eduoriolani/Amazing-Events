@@ -1,41 +1,59 @@
-const details = document.getElementById('details-section')
-const params = new URLSearchParams (document.location.search)
-const idEvent = params.get('id')
-let events
+let {createApp} = Vue 
 
-fetch("https://mindhub-xj03.onrender.com/api/amazing")
-.then( response => response.json())
-.then( data => {
-    events = data
-    let allEvents = events.events
-const eventInfo = allEvents.find(event => event._id == idEvent)
-document.title = `Details of ${eventInfo.name}`
+createApp({
+
+    data(){
+        return {
+            allEvents : [],
+            eventId : null,
+            event : {},
+        }
+    },
+    created(){
+        let url = "https://mindhub-xj03.onrender.com/api/amazing"
+        fetch(url)
+        .then( response => response.json())
+        .then( data => {
+        console.log(data);
+        this.allEvents = data.events
+        console.log(data.events);
+        const params = new URLSearchParams (document.location.search)
+        this.eventId = params.get('id')
+        console.log(this.eventId);
+        this.event = this.allEvents.find (event => event._id == this.eventId)
 
 
-function filtrarPorFecha(eventDate, date){
-    if (eventDate > date) {
-        return `<li>Estimate: ${eventInfo.estimate}</li>`
-    } return `<li>Assistance: ${eventInfo.assistance}</li>`
-}
-const asistOrEstimate = filtrarPorFecha (eventInfo.date, data.currentDate)
+
+        })
+        .catch(error => console.error(error))
+    },
+    
+    
+    
+}).mount("#app")
 
 
 
-details.innerHTML = `<div class="detail-div pt-3">
-                    <figure>
-                        <img src="${eventInfo.image}" alt="${eventInfo.name}">
-                        <figcaption>
-                        <h2>${eventInfo.name}</h2>
-                            <p>${eventInfo.description}</p>
-                            <ul>
-                                <li>Date: ${eventInfo.date}</li>
-                                <li>Price: $${eventInfo.price}</li>
-                                <li>Capacity: ${eventInfo.capacity}</li>
-                                ${asistOrEstimate}
-                                <li>Place: ${eventInfo.place}</li>
-                                
-                                </ul>
-                                </figcaption>
-                                </figure>
-                                </div>`
-})                     
+
+
+
+
+// // const details = document.getElementById('details-section')
+// const params = new URLSearchParams (document.location.search)
+// const idEvent = params.get('id')
+// // let events
+
+
+
+
+// function filtrarPorFecha(eventDate, date){
+//     if (eventDate > date) {
+//         return `<li>Estimate: ${eventInfo.estimate}</li>`
+//     } return `<li>Assistance: ${eventInfo.assistance}</li>`
+// }
+// // const asistOrEstimate = filtrarPorFecha (eventInfo.date, data.currentDate)
+
+
+
+// details.innerHTML = ``
+// })                     
